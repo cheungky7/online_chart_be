@@ -34,6 +34,7 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
+			<!--<version>42.5.0</version>-->
 		</dependency>
 		<!--<dependency>
 			<groupId>io.springfox</groupId>
@@ -55,11 +56,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>jakarta.persistence</groupId>
 			<artifactId>jakarta.persistence-api</artifactId>
 			<version>3.1.0</version>
-		</dependency>
+		</dependency>-->
 	</dependencies>
 
 	<build>
