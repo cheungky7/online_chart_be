@@ -20,6 +20,11 @@ public class ProductService {
        return ret;
     }
 
+    public void createProduct(Long id,Long qty){
+        Product newPrd=new Product(id,qty);
+        productRepository.save(newPrd);
+    }
+
 
 
 }

@@ -13,10 +13,18 @@ public class Product {
     @Id
     private Long id;
 
-    private int quantity;
+    private Long quantity;
 
     @Version
     private int version;
+
+    public Product() {
+
+    }
+    public Product(Long id, Long quantity) {
+        this.id = id;
+        this.quantity = quantity;
+    }
 
     public Long getId() {
         return id;
@@ -26,11 +34,11 @@ public class Product {
         this.id = id;
     }
 
-    public int getQuantity() {
+    public Long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Long quantity) {
         this.quantity = quantity;
     }
 
