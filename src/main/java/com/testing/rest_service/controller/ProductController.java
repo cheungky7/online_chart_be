@@ -2,6 +2,7 @@ package com.testing.rest_service.controller;
 
 import com.testing.rest_service.domain.entities.Product;
 import com.testing.rest_service.service.ProductService;
+import com.testing.rest_service.swagger.AddProductReq;
 import com.testing.rest_service.swagger.CreateProductReq;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,13 @@ public class ProductController {
 
         return product.toString();
     }
+
+    @PutMapping("/add")
+    public ResponseEntity<String> addProduct(@RequestBody AddProductReq addProductReq){
+        Product product=productService.addAmountToProduct(addProductReq.getId(),addProductReq.getAddQty());
+        return new ResponseEntity<>(product.toString(), HttpStatus.OK);
+    }
+
 
     @PostMapping("/create")
     public ResponseEntity<String> createProduct(@RequestBody CreateProductReq createProductReq){
