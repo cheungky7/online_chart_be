@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProductService {
@@ -21,6 +21,8 @@ public class ProductService {
        return ret;
     }
 
+
+    @Transactional
     public Product addAmountToProduct(Long id,Long addQty){
 
         Product product=productRepository.findById(id).orElseThrow(()->
@@ -36,6 +38,7 @@ public class ProductService {
 
     }
 
+    @Transactional
     public void createProduct(Long id,Long qty){
         Product newPrd=new Product(id,qty);
         productRepository.save(newPrd);
