@@ -5,28 +5,21 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
-
-@Entity(name = "Product")
-@Table(name = "product")
-public class Product {
+@Entity(name = "ProductInventory")
+@Table(name = "product_inventory")
+public class ProductInventory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-   // private Long quantity;
+    private Long quantity;
 
-    private Long inventoryId;
 
-    private String description;
-
-    private String SKU;
-
-    private double price;
-
+    // @CreationTimestamp: Automatically sets the field to the current timestamp when the entity is created.
+    // @Column(name = "created_at", updatable = false): This specifies that the column should not be updated after its initial creation, ensuring that it retains the creation time.
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private OffsetDateTime createdAt;
@@ -38,54 +31,12 @@ public class Product {
     @Column(name = "deleted_at")
     private OffsetDateTime deletedAt;
 
-
-
-    @Version
-    private int version;
-
-    public Product() {
-
-    }
-
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getInventoryId() {
-        return inventoryId;
-    }
-
-    public void setInventoryId(Long inventoryId) {
-        this.inventoryId = inventoryId;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getSKU() {
-        return SKU;
-    }
-
-    public void setSKU(String SKU) {
-        this.SKU = SKU;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public OffsetDateTime getCreatedAt() {
@@ -112,5 +63,11 @@ public class Product {
         this.deletedAt = deletedAt;
     }
 
-//Getters and setters omitted for brevity
+    public Long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
 }
