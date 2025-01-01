@@ -17,4 +17,12 @@ public class Wishlist {
     // You may need a join table for this relationship.
 
     // Getters and Setters
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

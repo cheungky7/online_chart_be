@@ -20,5 +20,30 @@ public class CartItem {
     private Integer quantity;
 
     // Getters and Setters
+
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public ProductSKU getSku() {
+        return sku;
+    }
+
+    public void setSku(ProductSKU sku) {
+        this.sku = sku;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 }
 
