@@ -29,9 +29,9 @@ public class ProductService {
                 new EntityNotFoundException("Product not found")
         );
 
-        Long qty=product.getQuantity();
-        qty=qty+addQty;
-        product.setQuantity(qty);
+       // Long qty=product.getQuantity();
+       // qty=qty+addQty;
+       // product.setQuantity(qty);
 
         Product modifiedProduct=productRepository.save(product);
         return modifiedProduct;
@@ -40,8 +40,8 @@ public class ProductService {
 
     @Transactional
     public void createProduct(Long id,Long qty){
-        Product newPrd=new Product(id,qty);
-        productRepository.save(newPrd);
+        //Product newPrd=new Product(id,qty);
+        //productRepository.save(newPrd);
     }
 
 
