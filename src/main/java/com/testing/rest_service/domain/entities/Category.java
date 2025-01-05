@@ -33,5 +33,13 @@ public class Category {
     public void setProducts(Set<Product> products) {
         this.products = products;
     }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
 }
 
