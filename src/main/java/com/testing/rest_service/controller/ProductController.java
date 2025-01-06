@@ -4,12 +4,17 @@ import com.testing.rest_service.domain.entities.Product;
 import com.testing.rest_service.service.ProductService;
 import com.testing.rest_service.swagger.AddProductReq;
 import com.testing.rest_service.swagger.CreateProductReq;
+import com.testing.rest_service.swagger.dto.ProductDTO;
 import org.apache.coyote.Response;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("product")
@@ -18,30 +23,52 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    @GetMapping("/search/{id}")
-    String searchProduct(@PathVariable Long id){
-        //String ret="Return number:"+id;
-        Product product=productService.searchProductById(id);
+    @Autowired
+    private ModelMapper modelMapper; // Ensure you have ModelMapper configured as a bean
 
-        return product.toString();
+    @GetMapping
+    public List<ProductDTO> getAllProducts() {
+        return productService.getAllProducts().stream()
+                .map(product -> modelMapper.map(product, ProductDTO.class))
+                .collect(Collectors.toList());
     }
 
-    @PutMapping("/add")
-    public ResponseEntity<String> addProduct(@RequestBody AddProductReq addProductReq){
-        Product product=productService.addAmountToProduct(addProductReq.getId(),addProductReq.getAddQty());
-        return new ResponseEntity<>(product.toString(), HttpStatus.OK);
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) {
+        Product product = productService.getProductById(id);
+        if (product == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(modelMapper.map(product, ProductDTO.class));
     }
 
+    @PostMapping
+    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO) {
+        Product product = modelMapper.map(productDTO, Product.class);
+        Product savedProduct = productService.createProduct(product);
+        return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(savedProduct, ProductDTO.class));
+    }
 
-    @PostMapping("/create")
-    public ResponseEntity<String> createProduct(@RequestBody CreateProductReq createProductReq){
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO) {
+        Product updatedProduct = modelMapper.map(productDTO, Product.class);
+        updatedProduct = productService.updateProduct(id, updatedProduct);
 
+        if (updatedProduct == null) {
+            return ResponseEntity.notFound().build();
+        }
 
-        productService.createProduct(createProductReq.getId(),createProductReq.getQty());
+        return ResponseEntity.ok(modelMapper.map(updatedProduct, ProductDTO.class));
+    }
 
-        Product product=productService.searchProductById(createProductReq.getId());
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
+        if (productService.getProductById(id) == null) {
+            return ResponseEntity.notFound().build();
+        }
 
-        return new ResponseEntity<>(product.toString(), HttpStatus.CREATED);
+        productService.deleteProduct(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
