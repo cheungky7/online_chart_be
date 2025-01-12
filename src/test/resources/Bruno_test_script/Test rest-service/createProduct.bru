@@ -1,0 +1,26 @@
+meta {
+  name: createProduct
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/product
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Type C to Type C USB Cable(1M)",
+    "description": "USB Cable made in China",
+    "basePrice": 10,
+    "skus": [
+      {
+        "price": 20,
+        "quantityInStock": 20
+      }
+    ],
+    "categoryId": 0
+  }
+}
