@@ -2,19 +2,18 @@ package com.testing.rest_service.controller;
 
 import com.testing.rest_service.domain.entities.Product;
 import com.testing.rest_service.service.ProductService;
-import com.testing.rest_service.swagger.AddProductReq;
-import com.testing.rest_service.swagger.CreateProductReq;
 import com.testing.rest_service.swagger.dto.ProductDTO;
-import org.apache.coyote.Response;
+import com.testing.rest_service.swagger.request.CreateProductReq;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+//https://www.perplexity.ai/search/db-schema-for-online-shopping-agl1.4s2TEqcoVYcnD9PNw
 
 @RestController
 @RequestMapping("product")
@@ -43,10 +42,12 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO) {
-        Product product = modelMapper.map(productDTO, Product.class);
-        Product savedProduct = productService.createProduct(product);
+    public ResponseEntity<ProductDTO> createProduct(@RequestBody CreateProductReq productReq) {
+       // Product product = modelMapper.map(productDTO, Product.class);
+
+        Product savedProduct = productService.createProduct(productReq);
         return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(savedProduct, ProductDTO.class));
+
     }
 
     @PutMapping("/{id}")

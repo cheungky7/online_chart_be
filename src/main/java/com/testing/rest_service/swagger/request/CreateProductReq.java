@@ -1,28 +1,20 @@
-package com.testing.rest_service.swagger.dto;
+package com.testing.rest_service.swagger.request;
 
-import com.testing.rest_service.domain.entities.Category;
-import com.testing.rest_service.domain.entities.ProductSKU;
+import com.testing.rest_service.swagger.dto.CategoryDTO;
+import com.testing.rest_service.swagger.dto.ProductSKUDTO;
 
 import java.util.Set;
 
-public class ProductDTO {
+public class CreateProductReq {
 
-    private Long productId;
+   // private Long productId;
     private String name;
     private String description;
     private Double basePrice;
 
     private Set<ProductSKUDTO> skus;
 
-    private CategoryDTO category;
-
-    public Long getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
+    private Long categoryId;
 
     public String getName() {
         return name;
@@ -56,11 +48,11 @@ public class ProductDTO {
         this.skus = skus;
     }
 
-    public CategoryDTO getCategory() {
-        return category;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(CategoryDTO category) {
-        this.category = category;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 }
