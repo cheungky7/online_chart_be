@@ -23,6 +23,8 @@ public class ProductSKU {
     private Double price;
     private Integer quantityInStock;
 
+    private Long waveHouseId;
+
     // Getters and Setters
 
     public Product getProduct() {
@@ -47,5 +49,13 @@ public class ProductSKU {
 
     public void setQuantityInStock(Integer quantityInStock) {
         this.quantityInStock = quantityInStock;
+    }
+
+    public Long getWaveHouseId() {
+        return waveHouseId;
+    }
+
+    public void setWaveHouseId(Long waveHouseId) {
+        this.waveHouseId = waveHouseId;
     }
 }

@@ -12,7 +12,7 @@ public class CreateProductReq {
     private String description;
     private Double basePrice;
 
-    private Set<ProductSKUDTO> skus;
+    private Set<CreateProductSKUReq> sKUs;
 
     private Long categoryId;
 
@@ -40,19 +40,19 @@ public class CreateProductReq {
         this.basePrice = basePrice;
     }
 
-    public Set<ProductSKUDTO> getSkus() {
-        return skus;
-    }
-
-    public void setSkus(Set<ProductSKUDTO> skus) {
-        this.skus = skus;
-    }
-
     public Long getCategoryId() {
         return categoryId;
     }
 
     public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public Set<CreateProductSKUReq> getsKUs() {
+        return sKUs;
+    }
+
+    public void setsKUs(Set<CreateProductSKUReq> sKUs) {
+        this.sKUs = sKUs;
     }
 }

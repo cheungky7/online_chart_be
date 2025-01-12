@@ -1,33 +1,13 @@
-package com.testing.rest_service.swagger.dto;
+package com.testing.rest_service.swagger.request;
 
 import com.testing.rest_service.domain.entities.Product;
 
-public class ProductSKUDTO {
-
-    private Long skuId;
-
-    private Product productDTO;
+public class CreateProductSKUReq {
 
     private Double price;
     private Integer quantityInStock;
 
     private Long waveHouseId;
-
-    public Long getSkuId() {
-        return skuId;
-    }
-
-    public void setSkuId(Long skuId) {
-        this.skuId = skuId;
-    }
-
-    public Product getProductDTO() {
-        return productDTO;
-    }
-
-    public void setProductDTO(Product productDTO) {
-        this.productDTO = productDTO;
-    }
 
     public Double getPrice() {
         return price;

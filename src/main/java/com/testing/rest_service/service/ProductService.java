@@ -56,9 +56,20 @@ public class ProductService {
         product.setName(req.getName());
         product.setDescription(req.getDescription());
 
-        Set<ProductSKU> sKUs =req.getSkus().stream()
-                .map(sku-> modelMapper.map(sku, ProductSKU.class)) .collect(Collectors.toSet());
-        product.setSkus(sKUs);
+       if(req.getsKUs()!=null && req.getsKUs().size() >0) {
+
+           Set<ProductSKU> sKUs = req.getsKUs().stream()
+                   .map(sku -> {
+                       //ProductSKU sKUEntity= modelMapper.map(sku, ProductSKU.class);
+                       ProductSKU sKUEntity =new ProductSKU();
+                       sKUEntity.setQuantityInStock(sku.getQuantityInStock());
+                       sKUEntity.setPrice(sku.getPrice());
+                       sKUEntity.setWaveHouseId(sku.getWaveHouseId());
+                       sKUEntity.setProduct(product);
+                       return sKUEntity;
+                   }).collect(Collectors.toSet());
+           product.setSkus(sKUs);
+       }
 
         Category category=categoryService.getCategoryById(req.getCategoryId());
         product.setCategory(category);
