@@ -1,5 +1,6 @@
 package com.testing.rest_service.controller;
 
+import com.testing.rest_service.mapper.CategoryMapping;
 import com.testing.rest_service.service.CategoryService;
 import com.testing.rest_service.swagger.dto.CategoryDTO;
 import com.testing.rest_service.domain.entities.*;
@@ -28,10 +29,13 @@ public class CategoryController {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Autowired
+    private CategoryMapping categoryMapping;
+
     @GetMapping
     public List<CategoryDTO> getAllCategories() {
         return categoryService.getAllCategories().stream()
-                .map(category -> modelMapper.map(category, CategoryDTO.class))
+                .map(category -> categoryMapping.convertToDTO(category))
                 .collect(Collectors.toList());
     }
 
@@ -41,7 +45,7 @@ public class CategoryController {
         if (category == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(modelMapper.map(category, CategoryDTO.class));
+        return ResponseEntity.ok(categoryMapping.convertToDTO(category));
     }
 
     @PostMapping
@@ -49,12 +53,12 @@ public class CategoryController {
         Category category = modelMapper.map(categoryDTO, Category.class);
         category.setCategoryId(null); //set null for new create Category
         Category savedCategory = categoryService.createCategory(category);
-        return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(savedCategory, CategoryDTO.class));
+        return ResponseEntity.status(HttpStatus.CREATED).body(categoryMapping.convertToDTO(savedCategory));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<CategoryDTO> editCategory(@PathVariable Long id, @RequestBody CategoryDTO categoryDTO) {
-        Category updatedCategory = modelMapper.map(categoryDTO, Category.class);
+        Category updatedCategory =  modelMapper.map(categoryDTO, Category.class);
         updatedCategory = categoryService.editCategory(id, updatedCategory);
 
         if (updatedCategory == null) {

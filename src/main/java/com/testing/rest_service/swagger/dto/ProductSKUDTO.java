@@ -6,7 +6,7 @@ public class ProductSKUDTO {
 
     private Long skuId;
 
-    private Product productDTO;
+    //private Product productDTO;
 
     private Double price;
     private Integer quantityInStock;
@@ -20,7 +20,7 @@ public class ProductSKUDTO {
     public void setSkuId(Long skuId) {
         this.skuId = skuId;
     }
-
+/*
     public Product getProductDTO() {
         return productDTO;
     }
@@ -28,7 +28,7 @@ public class ProductSKUDTO {
     public void setProductDTO(Product productDTO) {
         this.productDTO = productDTO;
     }
-
+*/
     public Double getPrice() {
         return price;
     }

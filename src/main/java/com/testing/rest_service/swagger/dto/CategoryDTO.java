@@ -10,7 +10,9 @@ public class CategoryDTO {
 
     private String name;
 
-    private Set<ProductDTO> products;
+    //private Set<ProductDTO> products;
+
+    private Set<Long> productIds;
 
     public Long getCategoryId() {
         return categoryId;
@@ -28,6 +30,15 @@ public class CategoryDTO {
         this.name = name;
     }
 
+    public Set<Long> getProductIds() {
+        return productIds;
+    }
+
+    public void setProductIds(Set<Long> productIds) {
+        this.productIds = productIds;
+    }
+
+    /*
     public Set<ProductDTO> getProducts() {
         return products;
     }
@@ -35,4 +46,6 @@ public class CategoryDTO {
     public void setProducts(Set<ProductDTO> products) {
         this.products = products;
     }
+
+ */
 }
