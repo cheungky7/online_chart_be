@@ -4,10 +4,14 @@ meta {
   seq: 3
 }
 
-post {
-  url: http://localhost:8080/product
+get {
+  url: http://localhost:8080/api/categories/:id
   body: json
   auth: none
+}
+
+params:path {
+  id: 2
 }
 
 body:json {

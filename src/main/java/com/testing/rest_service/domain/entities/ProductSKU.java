@@ -55,7 +55,21 @@ public class ProductSKU {
         return waveHouseId;
     }
 
+
+
     public void setWaveHouseId(Long waveHouseId) {
         this.waveHouseId = waveHouseId;
+    }
+
+    //https://www.perplexity.ai/search/jpa-version-example-sAmNIzuhSy27ReVuxJXurA
+    public Long getVersion() {
+        return version;
+    }
+
+    //https://www.perplexity.ai/search/generatedvalue-in-jpa-need-get-BCgR60CiRa.vmCW4bgv3Vg
+
+
+    public Long getSkuId() {
+        return skuId;
     }
 }
