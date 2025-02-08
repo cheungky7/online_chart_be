@@ -1,0 +1,10 @@
+version: '2'
+services:
+  online-chart-backend:
+    container_name: online-chart-backend
+    build:
+      #context: docker-online-chart-backend
+      dockerfile: Dockerfile
+    image: online-chart-backend:latest
+    ports:
+      - 8080:8080

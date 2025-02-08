@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 //https://www.perplexity.ai/search/db-schema-for-online-shopping-agl1.4s2TEqcoVYcnD9PNw
 
 @RestController
-@RequestMapping("product")
+@RequestMapping("/api/product")
 public class ProductController {
 
     @Autowired
